@@ -1,0 +1,73 @@
+name: Build Container
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  BuildContainer:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile.latest
+          platforms: linux/amd64,linux/arm64/v8
+          push: true
+          tags: |
+            ghcr.io/lebje/lfs-pointers:latest
+            
+  BuildTaggedContainer:
+    runs-on: ubuntu-20.04
+    outputs:
+      TAG: ${{ steps.get-latest-tag.outputs.TAG }}
+    steps:
+      - 
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          clean: "false"
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - 
+        id: "getLatestTag"
+        name: "Get Latest Tag"
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64/v8
+          push: true
+          tags: |
+            ghcr.io/lebje/lfs-pointers:${{ steps.getLatestTag.outputs.tag }}

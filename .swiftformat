@@ -1,0 +1,14 @@
+--swiftversion 5.3
+--binarygrouping none 
+--decimalgrouping none 
+--hexgrouping none 
+--indent tab 
+--indentcase true 
+--nospaceoperators "...,..<" 
+--octalgrouping none 
+--self insert 
+--semicolons never 
+--stripunusedargs unnamed-only 
+--wraparguments before-first 
+--wrapparameters before-first 
+--disable trailingClosures, typeSugar
