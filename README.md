@@ -2,6 +2,12 @@
 
 **A simple, `Foundation`-less Swift package for creating `ar` archives.**
 
+[![Swift 5.3](https://img.shields.io/badge/Swift-5.3-brightgreen?logo=swift)](https://swift.org)
+[![SPM Compatible](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager)
+[![https://img.shields.io/badge/Platforms-iOS%20%7C%20Mac%20%7C%20Linux%20%7C%20Windows-lightgrey](https://img.shields.io/badge/Platforms-iOS%20%7C%20Mac%20%7C%20Linux%20%7C%20Windows-lightgrey)](https://img.shields.io/badge/Platforms-MacOS%20%7C%20Linux-lightgrey)
+[![](https://img.shields.io/github/v/tag/LebJe/ArArchiveKit)](https://github.com/LebJe/ArArchiveKit/releases)
+[![Build and Test](https://github.com/LebJe/ArArchiveKit/workflows/Build%20and%20Test/badge.svg)](https://github.com/LebJe/ArArchiveKit/actions?query=workflow%3A%22Build+and+Test%22)
+
 # Table of Contents
 
 <!--ts-->
