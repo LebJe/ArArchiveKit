@@ -49,7 +49,7 @@ public struct ArArchiveWriter {
 		self.write(contents)
 	}
 
-	/// Wrapper function around `ArArchiveWriter.addFile(header:contents:)`.
+	/// Wrapper function around `ArArchiveWriter.addFile(header:contents:)` which allows you to pass in a `String` instead of raw bytes..
 	public mutating func addFile(header: Header, contents: String) {
 		self.addFile(header: header, contents: Array(contents.utf8))
 	}

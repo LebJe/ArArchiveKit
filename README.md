@@ -17,9 +17,10 @@
       * [Installation](#installation)
          * [Swift Package Manager](#swift-package-manager)
       * [Usage](#usage)
+      * [Other Platforms](#other-platforms)
       * [Contributing](#contributing)
 
-<!-- Added by: lebje, at: Wed Mar 17 11:47:40 EDT 2021 -->
+<!-- Added by: lebje, at: Wed Mar 17 17:56:24 EDT 2021 -->
 
 <!--te-->
 
@@ -36,13 +37,13 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 Add this to the `dependencies` array in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/LebJe/ArArchiveKit.git", from: “0.0.1”)
+.package(url: "https://github.com/LebJe/ArArchiveKit.git", from: "0.0.1")
 ```
 
 . Also add this to the `targets` array in the aforementioned file:
 
 ```swift
-.product(name: "ArARchiveKit", package: "ArArchiveKit")
+.product(name: "ArArchiveKit", package: "ArArchiveKit")
 ```
 
 ## Usage
@@ -108,8 +109,7 @@ try data.write(to: URL(fileURLWithPath: "myArchive.a"))
 ```
 ## Other Platforms
 
-ArArchiveKit doesn't depend on any library or `Foundation`-only the Swift standard library. It should compile on any platform that supports the standard library.
-
+ArArchiveKit doesn't depend on any library or `Foundation` - only the Swift standard library. It should compile on any platform that supports the standard library.
 
 ## Contributing
 
