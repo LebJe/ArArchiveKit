@@ -3,7 +3,10 @@ public struct Header {
 	/// The file's name. The name will be truncated to 16 characters.
 	public let name: String
 
+	/// The ID of the user the file belonged to when it was on the filesystem.
 	public private(set) var userID: Int
+	
+	/// The ID of the group the file belonged to when it was on the filesystem.
 	public private(set) var groupID: Int
 
 	/// The permissions of the file.

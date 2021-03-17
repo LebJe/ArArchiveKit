@@ -11,15 +11,15 @@
 # Table of Contents
 
 <!--ts-->
+   * [ArArchiveKit](#ararchivekit)
+   * [Table of Contents](#table-of-contents)
+      * [Coming Soon](#coming-soon)
+      * [Installation](#installation)
+         * [Swift Package Manager](#swift-package-manager)
+      * [Usage](#usage)
+      * [Contributing](#contributing)
 
--   [ArArchiveKit](#ararchivekit)
--   [Table of Contents](#table-of-contents)
-    -   [Installation](#installation)
-        -   [Swift Package Manager](#swift-package-manager)
-    -   [Usage](#usage)
-    -   [Contributing](#contributing)
-
-<!-- Added by: lebje, at: Wed Mar 17 11:21:44 EDT 2021 -->
+<!-- Added by: lebje, at: Wed Mar 17 11:47:40 EDT 2021 -->
 
 <!--te-->
 
