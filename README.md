@@ -1,6 +1,6 @@
 # ArArchiveKit
 
-**A simple, `Foundation`-less Swift package for creating `ar` archives.**
+**A simple, `Foundation`-less Swift package for creating `ar` archives. Inspired by [ar](https://github.com/blakesmith/ar).**
 
 [![Swift 5.3](https://img.shields.io/badge/Swift-5.3-brightgreen?logo=swift)](https://swift.org)
 [![SPM Compatible](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager)
@@ -74,13 +74,19 @@ let header = Header(
 Once you have your `Header`, you can write it, along with the contents of your file, to the archive:
 
 ```swift
-let contents = [
+var contents = [
 	UInt8(ascii: "H"),
 	UInt8(ascii: "e"),
 	UInt8(ascii: "l"),
 	UInt8(ascii: "l"),
 	UInt8(ascii: "o"),
 ]
+
+// Or
+
+let myData: Data = "Hello".data(using .utf8)!
+
+contents = Array<UInt8>(myData)
 
 archive.addFile(header: header, contents: contents)
 ```
