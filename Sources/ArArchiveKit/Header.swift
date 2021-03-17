@@ -1,5 +1,5 @@
 /// The `ar` header, which is placed atop the contents of a file in the archive to provide information such as the size of the file, the file's name, it's permissions, etc.
-struct Header {
+public struct Header {
 	/// The file's name. The name will be truncated to 16 characters.
 	public let name: String
 
