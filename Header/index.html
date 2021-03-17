@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArArchiveKit - Header</title>
+    <link rel="stylesheet" type="text/css" href="https://lebje.github.io/ArArchiveKit/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="https://lebje.github.io/ArArchiveKit/">
+            <strong>
+                ArArchiveKit
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#header.init(name:userid:groupid:mode:modificationtime:)">init(name:​user​ID:​group​ID:​mode:​modification​Time:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#header.name">name</a></li><li class="variable"><a href="#header.userid">user​ID</a></li><li class="variable"><a href="#header.groupid">group​ID</a></li><li class="variable"><a href="#header.mode">mode</a></li><li class="variable"><a href="#header.modificationtime">modification​Time</a></li><li class="variable"><a href="#header.size">size</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Structure</small>
+    <code class="name">Header</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">Header</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The <code>ar</code> header, which is placed atop the contents of a file in the archive to provide information such as the size of the file, the file's name, it's permissions, etc.</p>
+
+</div>
+
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="header.init(name:userid:groupid:mode:modificationtime:)">
+    <h3>
+        <code>init(name:​user​ID:​group​ID:​mode:​modification​Time:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">name</span>: <span class="type">String</span>, <span class="variable">userID</span>: <span class="type">Int</span>, <span class="variable">groupID</span>: <span class="type">Int</span>, <span class="variable">mode</span>: <span class="type">UInt32</span> = <span class="number literal">0o644</span>, <span class="variable">modificationTime</span>: <span class="type">Int</span>)</code></pre></body></html>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="header.name">
+    <h3>
+        <code>name</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">let</span> <span class="variable">name</span>: <span class="type">String</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The file's name. The name will be truncated to 16 characters.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="header.userid">
+    <h3>
+        <code>user​ID</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">userID</span>: <span class="type">Int</span></code></pre></body></html>
+</div>
+<div role="article" class="variable" id="header.groupid">
+    <h3>
+        <code>group​ID</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">groupID</span>: <span class="type">Int</span></code></pre></body></html>
+</div>
+<div role="article" class="variable" id="header.mode">
+    <h3>
+        <code>mode</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">mode</span>: <span class="type">UInt32</span> = <span class="number literal">0o644</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The permissions of the file.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="header.modificationtime">
+    <h3>
+        <code>modification​Time</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">let</span> <span class="variable">modificationTime</span>: <span class="type">Int</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The last time this file was modified.</p>
+
+</div>
+<div class="discussion">
+    <p>Use <code>Int(myDate.timeIntervalSince1970)</code> to set <code>modificationTime</code> from a <code>Date</code>.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="header.size">
+    <h3>
+        <code>size</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">size</span>: <span class="type">Int</span> = <span class="number literal">0</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The size if the file.</p>
+
+</div>
+<div class="discussion">
+    <p>This variable is only set when reading in an archive header.</p>
+
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2021-03-17T15:48:05+0000">March 17, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>
