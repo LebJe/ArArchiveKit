@@ -1,3 +1,5 @@
+
+/// `ArArchiveWriter` creates `ar` files.
 public struct ArArchiveWriter {
 	/// The raw bytes of the archive.
 	public var bytes: [UInt8] = []
