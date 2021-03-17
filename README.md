@@ -27,7 +27,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 ## Coming Soon
 
--   Reading `ar` archives
+-   Parsing `ar` archives
 
 ## Installation
 
@@ -106,6 +106,10 @@ let data = Data(bytes)
 // And write it:
 try data.write(to: URL(fileURLWithPath: "myArchive.a"))
 ```
+## Other Platforms
+
+ArArchiveKit doesn't depend on any library or `Foundation`-only the Swift standard library. It should compile on any platform that supports the standard library.
+
 
 ## Contributing
 
