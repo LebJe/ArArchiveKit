@@ -4,10 +4,10 @@ public struct Header {
 	public let name: String
 
 	/// The ID of the user the file belonged to when it was on the filesystem.
-	public private(set) var userID: Int
-	
+	public private(set) var userID: Int = 0
+
 	/// The ID of the group the file belonged to when it was on the filesystem.
-	public private(set) var groupID: Int
+	public private(set) var groupID: Int = 0
 
 	/// The permissions of the file.
 	public private(set) var mode: UInt32 = 0o644
@@ -24,8 +24,8 @@ public struct Header {
 
 	public init(
 		name: String,
-		userID: Int,
-		groupID: Int,
+		userID: Int = 0,
+		groupID: Int = 0,
 		mode: UInt32 = 0o644,
 		modificationTime: Int
 	) {

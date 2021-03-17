@@ -3,25 +3,25 @@
 import PackageDescription
 
 let package = Package(
-    name: "ArArchiveKit",
-    products: [
-        .library(
-            name: "ArArchiveKit",
-            targets: ["ArArchiveKit"]
+	name: "ArArchiveKit",
+	products: [
+		.library(
+			name: "ArArchiveKit",
+			targets: ["ArArchiveKit"]
 		),
-    ],
-    dependencies: [],
-    targets: [
-        .target(
-            name: "ArArchiveKit",
-            dependencies: []
+	],
+	dependencies: [],
+	targets: [
+		.target(
+			name: "ArArchiveKit",
+			dependencies: []
 		),
-        .testTarget(
-            name: "ArArchiveKitTests",
+		.testTarget(
+			name: "ArArchiveKitTests",
 			dependencies: ["ArArchiveKit"],
 			resources: [
 				.copy("test-files/"),
 			]
 		),
-    ]
+	]
 )

@@ -1,12 +1,12 @@
-import XCTest
 @testable import ArArchiveKit
 import Foundation
+import XCTest
 
 final class ArArchiveKitTests: XCTestCase {
-    func testSingleArchive() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
+	func testSingleArchive() throws {
+		// This is an example of a functional test case.
+		// Use XCTAssert and related functions to verify your tests produce the correct
+		// results.
 
 		let data = try Data(contentsOf: Bundle.module.url(forResource: "test-files/archive", withExtension: "a")!)
 
@@ -23,7 +23,7 @@ final class ArArchiveKitTests: XCTestCase {
 		)
 
 		XCTAssertEqual(Data(writer.bytes), data)
-    }
+	}
 
 	func testMultiArchive() throws {
 		var writer = ArArchiveWriter()
@@ -54,8 +54,8 @@ final class ArArchiveKitTests: XCTestCase {
 		XCTAssertEqual(Data(writer.bytes), data)
 	}
 
-    static var allTests = [
-        ("Test Single Archive", testSingleArchive),
+	static var allTests = [
+		("Test Single Archive", testSingleArchive),
 		("Test Multi-Archive", testMultiArchive),
-    ]
+	]
 }

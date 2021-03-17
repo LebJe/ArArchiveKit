@@ -65,8 +65,6 @@ time = Int(date.timeIntervalSince1970)
 let header = Header(
 	// `name` will be truncated to 16 characters.
 	name: "hello.txt",
-	userID: 501,
-	groupID: 20,
 	modificationTime: time
 )
 ```
