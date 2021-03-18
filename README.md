@@ -1,6 +1,6 @@
 # ArArchiveKit
 
-**A simple, 0-dependency (including `Foundation`) Swift package for creating `ar` archives. Inspired by [ar](https://github.com/blakesmith/ar).**
+**A simple, 0-dependency Swift package for creating `ar` archives. Inspired by [ar](https://github.com/blakesmith/ar).**
 
 [![Swift 5.3](https://img.shields.io/badge/Swift-5.3-brightgreen?logo=swift)](https://swift.org)
 [![SPM Compatible](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager)
@@ -113,7 +113,7 @@ TODO
 
 ## Other Platforms
 
-ArArchiveKit doesn't depend on any library or `Foundation` - only the Swift standard library. It should compile on any platform that supports the standard library.
+ArArchiveKit doesn't depend on any library, `Foundation`, or `Darwin`/`Glibc` - only the Swift standard library. It should compile on any platform that supports the standard library.
 
 ## Contributing
 

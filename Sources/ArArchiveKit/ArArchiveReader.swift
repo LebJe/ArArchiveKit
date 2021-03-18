@@ -30,7 +30,7 @@ public struct ArArchiveReader {
 	/// let reader = try ArArchiveReader(archive: bytes)
 	/// for index = in 0..<reader.count {
 	/// 	let header = reader.headers[index]
-	/// 	let data = reader[headerç]
+	/// 	let data = reader[header]
 	/// 	// Use data and header.
 	/// }
 	/// ```
