@@ -18,10 +18,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-import XCTest
+public enum ArArchiveError: Error {
+	/// The archive was empty.
+	case emptyArchive
 
-import ArArchiveKitTests
+	/// The archive was invalid. It may not contain a global header,
+	/// the file headers may be ill formatted, or something else my be wrong.
+	case invalidArchive
 
-var tests = [XCTestCaseEntry]()
-tests += ArArchiveKitTests.allTests()
-XCTMain(tests)
+	/// The header may contain invalid characters and/or bytes, or may be missing certain fields.
+	case invalidHeader
+}
