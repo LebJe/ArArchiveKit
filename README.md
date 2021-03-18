@@ -13,22 +13,19 @@
 <!--ts-->
    * [ArArchiveKit](#ararchivekit)
    * [Table of Contents](#table-of-contents)
-      * [Coming Soon](#coming-soon)
       * [Installation](#installation)
          * [Swift Package Manager](#swift-package-manager)
       * [Usage](#usage)
+         * [Writing Archives](#writing-archives)
+         * [Reading Archives](#reading-archives)
       * [Other Platforms](#other-platforms)
       * [Contributing](#contributing)
 
-<!-- Added by: lebje, at: Wed Mar 17 17:56:24 EDT 2021 -->
+<!-- Added by: lebje, at: Thu Mar 18 18:40:11 EDT 2021 -->
 
 <!--te-->
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
-## Coming Soon
-
--   Parsing `ar` archives
 
 ## Installation
 
@@ -48,7 +45,9 @@ Add this to the `dependencies` array in `Package.swift`:
 
 ## Usage
 
-First, initialize your `ArArchiveWriter`:
+### Writing Archives
+
+To write archives, you'll need a `ArArchiveWriter`:
 
 ```swift
 var writer = ArArchiveWriter()
@@ -107,6 +106,11 @@ let data = Data(bytes)
 // And write it:
 try data.write(to: URL(fileURLWithPath: "myArchive.a"))
 ```
+
+### Reading Archives
+
+TODO
+
 ## Other Platforms
 
 ArArchiveKit doesn't depend on any library or `Foundation` - only the Swift standard library. It should compile on any platform that supports the standard library.

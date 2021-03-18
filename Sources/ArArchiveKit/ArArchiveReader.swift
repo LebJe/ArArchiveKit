@@ -23,6 +23,18 @@ public struct ArArchiveReader {
 	private var data: [UInt8]
 	private var currentIndex: Int = 0
 
+	/// Used primarily when in a for loop:
+	///
+	/// ```swift
+	/// let bytes = Array<UInt8>(try Data(contentsOf: myURL))
+	/// let reader = try ArArchiveReader(archive: bytes)
+	/// for index = in 0..<reader.count {
+	/// 	let header = reader.headers[index]
+	/// 	let data = reader[headerç]
+	/// 	// Use data and header.
+	/// }
+	/// ```
+	///
 	public var count: Int {
 		self.headers.count
 	}
@@ -30,8 +42,17 @@ public struct ArArchiveReader {
 	/// The headers that describe the files in this archive.
 	///
 	/// Use this to find a file in the archive, then use the provided subscript to get the bytes of the file.
+	///
+	/// ```swift
+	/// let bytes = Array<UInt8>(try Data(contentsOf: myURL))
+	/// let reader = try ArArchiveReader(archive: bytes)
+	/// let bytes = reader[reader.headers[0]]
+	/// // Use bytes...
+	/// ```
+	///
 	public var headers: [Header] = []
 
+	/// The initializer reads all the `ar` headers in preparation for random access to the header's file contents later.
 	public init(archive: [UInt8]) throws {
 		if archive.isEmpty {
 			throw ArArchiveError.emptyArchive
@@ -60,11 +81,20 @@ public struct ArArchiveReader {
 		}
 	}
 
-	/// Retrieves the bytes of the item at `index`.
+	/// Retrieves the bytes of the item at `index`, where index is the index of the `header` stored in the `headers` property of the reader.
 	///
 	/// Internally, the `Header` stored at `index` is used to find the file.
 	public subscript(index: Int) -> [UInt8] {
 		Array(self.data[self.headers[index].contentLocation..<self.headers[index].contentLocation + self.headers[index].size])
+	}
+
+	/// Retrieves the bytes of the file described in `header`.
+	///
+	/// - Parameter header: The `Header` that describes the file you wish to retrieves.
+	///
+	/// `header` MUST be a `Header` contained in the `headers` property of this `ArArchiveReader` or else you will get a "index out of range" error.
+	public subscript(header: Header) -> [UInt8] {
+		Array(self.data[header.contentLocation..<header.contentLocation + header.size])
 	}
 
 	private func parseHeader(bytes: [UInt8]) throws -> Header {
