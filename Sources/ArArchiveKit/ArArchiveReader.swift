@@ -23,19 +23,6 @@ public struct ArArchiveReader {
 	private var data: [UInt8]
 	private var currentIndex: Int = 0
 
-	/// Used primarily when in a for loop:
-	///
-	/// ```swift
-	/// let bytes = Array<UInt8>(try Data(contentsOf: myURL))
-	/// let reader = try ArArchiveReader(archive: bytes)
-	/// for index = in 0..<reader.count {
-	/// 	let header = reader.headers[index]
-	/// 	let data = reader[header]
-	/// 	// Use data and header.
-	/// }
-	/// ```
-	///
-
 	/// The headers that describe the files in this archive.
 	///
 	/// Use this to find a file in the archive, then use the provided subscript to get the bytes of the file.
@@ -43,7 +30,7 @@ public struct ArArchiveReader {
 	/// ```swift
 	/// let bytes = Array<UInt8>(try Data(contentsOf: myURL))
 	/// let reader = try ArArchiveReader(archive: bytes)
-	/// let bytes = reader[reader.headers[0]]
+	/// let bytes = reader[header: reader.headers[0]]
 	/// // Use bytes...
 	/// ```
 	///
