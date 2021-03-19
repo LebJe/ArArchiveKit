@@ -110,7 +110,7 @@ final class ArArchiveKitTests: XCTestCase {
 		let bytes = Array<UInt8>(try Data(contentsOf: Bundle.module.url(forResource: "test-files/multi-archive", withExtension: "a")!))
 		let reader = try ArArchiveReader(archive: bytes)
 
-		for (header, bytes) in reader {
+		for (_, _) in reader {
 			// This shouldn't crash.
 		}
 	}
