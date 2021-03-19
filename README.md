@@ -11,17 +11,20 @@
 # Table of Contents
 
 <!--ts-->
-   * [ArArchiveKit](#ararchivekit)
-   * [Table of Contents](#table-of-contents)
-      * [Installation](#installation)
-         * [Swift Package Manager](#swift-package-manager)
-      * [Usage](#usage)
-         * [Writing Archives](#writing-archives)
-         * [Reading Archives](#reading-archives)
-      * [Other Platforms](#other-platforms)
-      * [Contributing](#contributing)
 
-<!-- Added by: lebje, at: Thu Mar 18 18:40:11 EDT 2021 -->
+-   [ArArchiveKit](#ararchivekit)
+-   [Table of Contents](#table-of-contents)
+    -   [Installation](#installation)
+        -   [Swift Package Manager](#swift-package-manager)
+    -   [Usage](#usage)
+        -   [Writing Archives](#writing-archives)
+        -   [Reading Archives](#reading-archives)
+            -   [Iteration](#iteration)
+            -   [Subscript](#subscript)
+    -   [Other Platforms](#other-platforms)
+    -   [Contributing](#contributing)
+
+<!-- Added by: lebje, at: Thu Mar 18 21:01:32 EDT 2021 -->
 
 <!--te-->
 
@@ -109,11 +112,52 @@ try data.write(to: URL(fileURLWithPath: "myArchive.a"))
 
 ### Reading Archives
 
-TODO
+To read archives, you need an `ArArchiveReader`:
+
+```swift
+// myData is the bytes of the archive.
+let myData: Data = ...
+
+let reader = ArArchiveReader(archive: Array<UInt8>(myData))
+```
+
+Once you have your reader, there are several ways you can retrieve the data:
+
+#### Iteration
+
+You can iterate though all the files in the archive like this:
+
+```swift
+for (header, data) in reader {
+   // `data` is `Array<UInt8>` that contains the raw bytes of the file in the archive.
+   // `header` is the `Header` that describes the `data`.
+
+   // if you know `data` is a `String`, then you can use this initializer:
+   let str = String(data)
+}
+```
+
+#### Subscript
+
+Accessing data through the `subscript` is useful when you only need to access one or two items in a large archive:
+
+```swift
+
+// The subscript provides you with random access to any file in the archive:
+let firstFile = reader[0]
+let fifthFile = reader[6]
+```
+
+You can also use the overloaded version of the subscript which takes a header - useful for when you have a `Header`, but not the index of that header.
+
+```swift
+let header = reader.headers.first(where: { $0.name.contains(".swift") })!
+let data = reader[header: header]
+```
 
 ## Other Platforms
 
-ArArchiveKit doesn't depend on any library, `Foundation`, or `Darwin`/`Glibc` - only the Swift standard library. It should compile on any platform that supports the standard library.
+ArArchiveKit doesn't depend on any library, `Foundation`, or `Darwin`/`Glibc` - only the Swift standard library. It should compile on any platform where the standard library compiles.
 
 ## Contributing
 

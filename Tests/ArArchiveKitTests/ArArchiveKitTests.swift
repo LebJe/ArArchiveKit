@@ -95,12 +95,24 @@ final class ArArchiveKitTests: XCTestCase {
 		XCTAssertEqual(h.size, 13)
 	}
 
+	func testArchiveReaderSubscripts() throws {
+		let bytes = Array<UInt8>(try Data(contentsOf: Bundle.module.url(forResource: "test-files/medium-archive", withExtension: "a")!))
+		let reader = try ArArchiveReader(archive: bytes)
+
+		// Shouldn't crash
+		_ = reader[header: reader.headers[2]]
+
+		// Shouldn't crash
+		_ = reader[2]
+	}
+
 	func testIterateArchiveContents() throws {
 		let bytes = Array<UInt8>(try Data(contentsOf: Bundle.module.url(forResource: "test-files/multi-archive", withExtension: "a")!))
 		let reader = try ArArchiveReader(archive: bytes)
 
-		for _ in reader {
+		for (header, bytes) in reader {
 			// This shouldn't crash.
+			print(header.name + ": " + String(bytes.count))
 		}
 	}
 
@@ -109,5 +121,6 @@ final class ArArchiveKitTests: XCTestCase {
 		("Test Writing Large Multi-Archive", testWriteLargeMultiArchive),
 		("Test Read Large Archive", testReadLargeArchive),
 		("Test Iterating Over Archive's Contents", testIterateArchiveContents),
+		("Test Archive Reader Subscripts", testArchiveReaderSubscripts),
 	]
 }

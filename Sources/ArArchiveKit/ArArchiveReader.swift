@@ -35,9 +35,6 @@ public struct ArArchiveReader {
 	/// }
 	/// ```
 	///
-	public var count: Int {
-		self.headers.count
-	}
 
 	/// The headers that describe the files in this archive.
 	///
@@ -93,7 +90,7 @@ public struct ArArchiveReader {
 	/// - Parameter header: The `Header` that describes the file you wish to retrieves.
 	///
 	/// `header` MUST be a `Header` contained in the `headers` property of this `ArArchiveReader` or else you will get a "index out of range" error.
-	public subscript(header: Header) -> [UInt8] {
+	public subscript(header header: Header) -> [UInt8] {
 		Array(self.data[header.contentLocation..<header.contentLocation + header.size])
 	}
 
@@ -154,16 +151,17 @@ public struct ArArchiveReader {
 }
 
 extension ArArchiveReader: IteratorProtocol, Sequence {
-	public typealias Element = [UInt8]
+	public typealias Element = (Header, [UInt8])
 
-	public mutating func next() -> [UInt8]? {
+	public mutating func next() -> Element? {
 		if self.currentIndex > self.headers.count - 1 {
 			return nil
 		}
 
 		let bytes = self[currentIndex]
-		currentIndex += 1
+		let h = self.headers[self.currentIndex]
+		self.currentIndex += 1
 
-		return bytes
+		return (h, bytes)
 	}
 }
