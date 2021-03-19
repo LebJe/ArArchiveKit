@@ -112,7 +112,6 @@ final class ArArchiveKitTests: XCTestCase {
 
 		for (header, bytes) in reader {
 			// This shouldn't crash.
-			print(header.name + ": " + String(bytes.count))
 		}
 	}
 
