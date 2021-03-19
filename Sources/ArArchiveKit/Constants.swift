@@ -18,10 +18,5 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-import XCTest
-
-import ArArchiveKitTests
-
-var tests = [XCTestCaseEntry]()
-tests += ArArchiveKitTests.allTests()
-XCTMain(tests)
+let globalHeader = "!<arch>\n"
+let headerSize = 60
