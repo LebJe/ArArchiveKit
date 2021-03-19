@@ -148,7 +148,7 @@ let firstFile = reader[0]
 let fifthFile = reader[6]
 ```
 
-You can also use the overloaded version of the subscript which takes a header - useful for when you have a `Header`, but not the index of that header.
+You can also use the version of the subscript that takes a `Header` - useful for when you have a `Header`, but not the index of that header.
 
 ```swift
 let header = reader.headers.first(where: { $0.name.contains(".swift") })!
