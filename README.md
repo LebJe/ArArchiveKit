@@ -139,7 +139,7 @@ for (header, data) in reader {
 
 #### Subscript
 
-Accessing data through the `subscript` is useful when you only need to access one or two items in a large archive:
+Accessing data through the `subscript` is useful when you only need to access a few items in a large archive:
 
 ```swift
 
