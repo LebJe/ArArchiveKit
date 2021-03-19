@@ -1,6 +1,6 @@
 # ArArchiveKit
 
-**A simple, 0-dependency Swift package for creating `ar` archives. Inspired by [ar](https://github.com/blakesmith/ar).**
+**A simple, 0-dependency Swift package for reading and writing `ar` archives. Inspired by [ar](https://github.com/blakesmith/ar).**
 
 [![Swift 5.3](https://img.shields.io/badge/Swift-5.3-brightgreen?logo=swift)](https://swift.org)
 [![SPM Compatible](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager)
