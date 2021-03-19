@@ -23,9 +23,10 @@
             -   [Iteration](#iteration)
             -   [Subscript](#subscript)
     -   [Other Platforms](#other-platforms)
+        -   [Windows](#windows)
     -   [Contributing](#contributing)
 
-<!-- Added by: lebje, at: Thu Mar 18 21:01:32 EDT 2021 -->
+<!-- Added by: lebje, at: Fri Mar 19 12:25:55 EDT 2021 -->
 
 <!--te-->
 
