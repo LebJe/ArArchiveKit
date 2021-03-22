@@ -6,3 +6,5 @@ xcuserdata/
 /.swiftpm
 Package.resolved
 Brewfile.lock.json
+Examples/Foundationless/.swiftpm
+Examples/Foundationless/.build

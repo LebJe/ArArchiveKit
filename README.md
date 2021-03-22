@@ -1,6 +1,6 @@
 # ArArchiveKit
 
-**A simple, 0-dependency Swift package for reading and writing [`ar`](https://en.wikipedia.org/wiki/Ar_(Unix)) archives. Inspired by [ar](https://github.com/blakesmith/ar).**
+**A simple, 0-dependency Swift package for reading and writing [`ar`](<https://en.wikipedia.org/wiki/Ar_(Unix)>) archives. Inspired by [ar](https://github.com/blakesmith/ar).**
 
 [![Swift 5.3](https://img.shields.io/badge/Swift-5.3-brightgreen?logo=swift)](https://swift.org)
 [![SPM Compatible](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager)
@@ -22,11 +22,12 @@
         -   [Reading Archives](#reading-archives)
             -   [Iteration](#iteration)
             -   [Subscript](#subscript)
+-   [Examples](#examples)
     -   [Other Platforms](#other-platforms)
         -   [Windows](#windows)
     -   [Contributing](#contributing)
 
-<!-- Added by: lebje, at: Fri Mar 19 12:25:55 EDT 2021 -->
+<!-- Added by: lebje, at: Mon Mar 22 12:06:20 EDT 2021 -->
 
 <!--te-->
 
@@ -157,13 +158,17 @@ let header = reader.headers.first(where: { $0.name.contains(".swift") })!
 let data = reader[header: header]
 ```
 
+# Examples
+
+-   `Exaples/Foundationless`: This example shows how to use ArArchiveKit to read an archive using only `Darwin.C`/`Glibc`/`ucrt`.
+
 ## Other Platforms
 
-ArArchiveKit doesn't depend on any library, `Foundation`, or `Darwin`/`Glibc` - only the Swift standard library. It should compile on any platform where the standard library compiles.
+ArArchiveKit doesn't depend on any library, `Foundation`, or `Darwin`/`Glibc`/`ucrt` - only the Swift standard library. It should compile on any platform where the standard library compiles.
 
 ### Windows
 
-ArArchiveKit is currently being built on windows, but not tested, as the [Swift Package Manager Resources](https://github.com/apple/swift-evolution/blob/main/proposals/0271-package-manager-resources.md) doesn't seem to work (or isn't available) on Windows.
+ArArchiveKit is currently being built on Windows, but not tested, as the [Swift Package Manager Resources](https://github.com/apple/swift-evolution/blob/main/proposals/0271-package-manager-resources.md) doesn't seem to work (or isn't available) on Windows.
 
 ## Contributing
 
