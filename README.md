@@ -22,12 +22,12 @@
         -   [Reading Archives](#reading-archives)
             -   [Iteration](#iteration)
             -   [Subscript](#subscript)
--   [Examples](#examples)
+    -   [Examples](#examples)
     -   [Other Platforms](#other-platforms)
         -   [Windows](#windows)
     -   [Contributing](#contributing)
 
-<!-- Added by: lebje, at: Mon Mar 22 12:06:20 EDT 2021 -->
+<!-- Added by: lebje, at: Mon Mar 22 12:11:21 EDT 2021 -->
 
 <!--te-->
 
@@ -158,7 +158,7 @@ let header = reader.headers.first(where: { $0.name.contains(".swift") })!
 let data = reader[header: header]
 ```
 
-# Examples
+## Examples
 
 -   `Exaples/Foundationless`: This example shows how to use ArArchiveKit to read an archive using only `Darwin.C`/`Glibc`/`ucrt`.
 
