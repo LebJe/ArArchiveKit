@@ -33,6 +33,8 @@
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
+Documentation is available [here](https://lebje.github.io/ArArchiveKit).
+
 ## Installation
 
 ### Swift Package Manager
