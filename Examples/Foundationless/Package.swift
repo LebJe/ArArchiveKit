@@ -3,18 +3,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "Foundationless",
-    dependencies: [.package(path: "../../")],
-    targets: [
-        .target(
-            name: "Foundationless",
-            dependencies: [
-				.product(name: "ArArchiveKit", package: "ArArchiveKit")
+	name: "Foundationless",
+	dependencies: [.package(path: "../../")],
+	targets: [
+		.target(
+			name: "Foundationless",
+			dependencies: [
+				.product(name: "ArArchiveKit", package: "ArArchiveKit"),
 			]
 		),
-        .testTarget(
-            name: "FoundationlessTests",
-            dependencies: ["Foundationless"]
+		.testTarget(
+			name: "FoundationlessTests",
+			dependencies: ["Foundationless"]
 		),
-    ]
+	]
 )
