@@ -26,7 +26,7 @@
     <nav>
         <div class="wrapper">
             <h2>On This Page</h2>
-            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Conforms To</a></li></ul></li><li><a href="#enumeration cases">Enumeration Cases</a><ul><li class="case"><a href="#ararchiveerror.emptyarchive">empty​Archive</a></li><li class="case"><a href="#ararchiveerror.invalidarchive">invalid​Archive</a></li><li class="case"><a href="#ararchiveerror.invalidheader">invalid​Header</a></li></ul></li></ol>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Conforms To</a></li></ul></li><li><a href="#enumeration cases">Enumeration Cases</a><ul><li class="case"><a href="#ararchiveerror.emptyarchive">empty​Archive</a></li><li class="case"><a href="#ararchiveerror.invalidarchive">invalid​Archive</a></li><li class="case"><a href="#ararchiveerror.invalidmagicbytes">invalid​Magic​Bytes</a></li><li class="case"><a href="#ararchiveerror.missingmagicbytes">missing​Magic​Bytes</a></li><li class="case"><a href="#ararchiveerror.invalidheader">invalid​Header</a></li></ul></li></ol>
         </div>
     </nav>
 
@@ -108,6 +108,26 @@ the file headers may be ill formatted, or something else my be wrong.</p>
 
 </div>
 </div>
+<div role="article" class="case" id="ararchiveerror.invalidmagicbytes">
+    <h3>
+        <code>invalid​Magic​Bytes</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">case</span> <span class="variable">invalidMagicBytes</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The archive did not contain the correct sequence of bytes that identifies it as a <code>ar</code> archive.</p>
+
+</div>
+</div>
+<div role="article" class="case" id="ararchiveerror.missingmagicbytes">
+    <h3>
+        <code>missing​Magic​Bytes</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">case</span> <span class="variable">missingMagicBytes</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The archive did not contain the sequence of bytes that identifies it as a <code>ar</code> archive.</p>
+
+</div>
+</div>
 <div role="article" class="case" id="ararchiveerror.invalidheader">
     <h3>
         <code>invalid​Header</code>
@@ -127,7 +147,7 @@ the file headers may be ill formatted, or something else my be wrong.</p>
 
     <footer>
         <p>
-    Generated on <time datetime="2021-03-22T23:20:29+0000">March 22, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+    Generated on <time datetime="2021-04-09T22:36:15+0000">April 9, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
 </p>
     </footer>
 </body>
