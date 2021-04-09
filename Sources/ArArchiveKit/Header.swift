@@ -9,7 +9,7 @@
 /// This header is placed atop the contents of a file in the archive to
 /// provide information such as the size of the file, the file's name, it's permissions, etc.
 public struct Header: Equatable {
-	/// The file's name. The name will be truncated to 16 characters if the archive `Variant` is `common`.
+	/// The file's name. The name will be truncated to 16 characters if the archive's `Variant` is `common`.
 	public internal(set) var name: String
 
 	/// The ID of the user the file belonged to when it was on the filesystem.
