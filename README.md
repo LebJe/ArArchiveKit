@@ -34,6 +34,8 @@
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
+Documentation is available [here](https://lebje.github.io/ArArchiveKit).
+
 ## `ar` Variations
 
 ArArchiveKit supports the BSD variation of `ar` as described in [FreeBSD manpages](https://www.freebsd.org/cgi/man.cgi?query=ar&sektion=5).
