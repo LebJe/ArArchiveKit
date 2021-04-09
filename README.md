@@ -15,6 +15,7 @@
 
 -   [ArArchiveKit](#ararchivekit)
 -   [Table of Contents](#table-of-contents)
+    -   [ar Variations](#ar-variations)
     -   [Installation](#installation)
         -   [Swift Package Manager](#swift-package-manager)
     -   [Usage](#usage)
@@ -27,13 +28,19 @@
         -   [Windows](#windows)
     -   [Contributing](#contributing)
 
-<!-- Added by: lebje, at: Mon Mar 22 12:11:21 EDT 2021 -->
+<!-- Added by: lebje, at: Fri Apr  9 18:48:17 EDT 2021 -->
 
 <!--te-->
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 Documentation is available [here](https://lebje.github.io/ArArchiveKit).
+
+## `ar` Variations
+
+ArArchiveKit supports the BSD variation of `ar` as described in [FreeBSD manpages](https://www.freebsd.org/cgi/man.cgi?query=ar&sektion=5).
+
+Support for the GNU variant may come soon.
 
 ## Installation
 
@@ -162,7 +169,7 @@ let data = reader[header: header]
 
 ## Examples
 
--   `Exaples/Foundationless`: This example shows how to use ArArchiveKit to read an archive using only `Darwin.C`/`Glibc`/`ucrt`.
+-   `Exaples/Foundationless`: This example shows how to use ArArchiveKit to read an any archive using only `Darwin.C` (macOS), `Glibc` (Linux) or `ucrt` (Windows (not tested)).
 
 ## Other Platforms
 

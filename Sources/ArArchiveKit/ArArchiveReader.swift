@@ -1,22 +1,8 @@
 // Copyright (c) 2021 Jeff Lebrun
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the  Software), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
+//  Licensed under the MIT License.
 //
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED  AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
+//  The full text license can be found in the file named LICENSE.
 
 /// `ArArchiveReader` reads `ar` files.
 public struct ArArchiveReader {
@@ -37,15 +23,20 @@ public struct ArArchiveReader {
 	public var headers: [Header] = []
 
 	/// The initializer reads all the `ar` headers in preparation for random access to the header's file contents later.
+	///
+	/// - Parameters:
+	///   - archive: The bytes of the archive you want to read.
+	///   - variant: The format of the archive you want to read.
+	/// - Throws: `ArArchiveError`.
 	public init(archive: [UInt8]) throws {
 		if archive.isEmpty {
 			throw ArArchiveError.emptyArchive
 		} else if archive.count < 8 {
 			// The global header is missing.
-			throw ArArchiveError.invalidArchive
+			throw ArArchiveError.missingMagicBytes
 		} else if Array(archive[0...7]) != globalHeader.asciiArray {
 			// The global header is invalid.
-			throw ArArchiveError.invalidArchive
+			throw ArArchiveError.invalidMagicBytes
 		}
 
 		// Drop the global header from the byte array.
@@ -58,8 +49,11 @@ public struct ArArchiveReader {
 			var h = try self.parseHeader(bytes: Array(self.data[index...(index + headerSize - 1)]))
 
 			index += headerSize + 1
-			h.contentLocation = index - 1
-			index += h.size
+			h.contentLocation = (index - 1) + (h.nameSize != nil ? h.nameSize! : 0)
+
+			h.name = h.nameSize != nil ? String(Array(self.data[h.contentLocation - h.nameSize!..<h.contentLocation])) : h.name
+
+			index += h.size + (h.nameSize != nil ? h.nameSize! : 0)
 
 			self.headers.append(h)
 		}
@@ -83,13 +77,14 @@ public struct ArArchiveReader {
 
 	private func parseHeader(bytes: [UInt8]) throws -> Header {
 		var start = 0
-		let name = self.readString(from: Array(bytes[start...15]))
+		var name = self.readString(from: Array(bytes[start...15]))
 
 		start = 16
 
 		let modificationTime = self.readInt(from: Array(bytes[start...(start + 11)]))
 
 		start += 12
+
 		let userID = self.readInt(from: Array(bytes[start...(start + 5)]))
 
 		start += 6
@@ -113,11 +108,20 @@ public struct ArArchiveReader {
 		else { throw ArArchiveError.invalidHeader }
 
 		var h = Header(name: name, userID: u, groupID: g, mode: m, modificationTime: mT)
-		h.size = s
+
+		if name.hasPrefix("#1/") {
+			name.removeSubrange(name.startIndex..<name.index(name.startIndex, offsetBy: 3))
+
+			guard let nameSize = Int(name) else { throw ArArchiveError.invalidHeader }
+
+			h.size = s - nameSize
+			h.nameSize = nameSize
+		} else { h.size = s }
+
 		return h
 	}
 
-	/// From [blakesmith/r/reader.go: line 62](https://github.com/blakesmith/ar/blob/809d4375e1fb5bb262c159fc3ec2e7a86a8bfd28/reader.go#L62) .
+	/// From [blakesmith/ar/reader.go: line 62](https://github.com/blakesmith/ar/blob/809d4375e1fb5bb262c159fc3ec2e7a86a8bfd28/reader.go#L62) .
 	private func readString(from bytes: [UInt8]) -> String {
 		var i = bytes.count - 1
 

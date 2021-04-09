@@ -1,22 +1,8 @@
 // Copyright (c) 2021 Jeff Lebrun
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the  Software), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
+//  Licensed under the MIT License.
 //
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED  AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
+//  The full text license can be found in the file named LICENSE.
 
 @testable import ArArchiveKit
 import Foundation
@@ -95,6 +81,81 @@ final class ArArchiveKitTests: XCTestCase {
 		XCTAssertEqual(h.size, 13)
 	}
 
+	func testReadBSDArchiveWithLongFilenames() throws {
+		let bytes = Array<UInt8>(try Data(contentsOf: Bundle.module.url(forResource: "test-files/bsd-archive", withExtension: "a")!))
+		let reader = try ArArchiveReader(archive: bytes)
+
+		let h = reader.headers[0]
+		let h2 = reader.headers[1]
+
+		let expectedHeaders = [
+			Header(
+				name: "VeryLongFilename With Spaces.txt",
+				userID: 501,
+				groupID: 20,
+				mode: 0o644,
+				modificationTime: 1617373995
+			),
+			Header(
+				name: "VeryLongFilenameWithoutSpaces.txt",
+				userID: 501,
+				groupID: 20,
+				mode: 0o644,
+				modificationTime: 1617373995
+			),
+		]
+
+		// First header.
+		XCTAssertEqual(String(reader[0]), "Contents of the first file.")
+		XCTAssertEqual(h.name, expectedHeaders[0].name)
+		XCTAssertEqual(h.userID, expectedHeaders[0].userID)
+		XCTAssertEqual(h.groupID, expectedHeaders[0].groupID)
+		XCTAssertEqual(h.mode, expectedHeaders[0].mode)
+		XCTAssertEqual(h.modificationTime, expectedHeaders[0].modificationTime)
+		XCTAssertEqual(h.size, 27)
+
+		// Second header.
+		XCTAssertEqual(String(reader[1]), "Contents of the second file.")
+		XCTAssertEqual(h2.name, expectedHeaders[1].name)
+		XCTAssertEqual(h2.userID, expectedHeaders[1].userID)
+		XCTAssertEqual(h2.groupID, expectedHeaders[1].groupID)
+		XCTAssertEqual(h2.mode, expectedHeaders[1].mode)
+		XCTAssertEqual(h2.modificationTime, expectedHeaders[1].modificationTime)
+		XCTAssertEqual(h2.size, 28)
+	}
+
+	func testWriteBSDArchiveWithLongFilenames() throws {
+		var writer = ArArchiveWriter(variant: .bsd)
+
+		writer.addFile(
+			header:
+			Header(
+				name: "VeryLongFilename With Spaces.txt",
+				userID: 501,
+				groupID: 20,
+				mode: 0o644,
+				modificationTime: 1617373995
+			),
+			contents: "Contents of the first file."
+		)
+
+		writer.addFile(
+			header:
+			Header(
+				name: "VeryLongFilenameWithoutSpaces.txt",
+				userID: 501,
+				groupID: 20,
+				mode: 0o644,
+				modificationTime: 1617373995
+			),
+			contents: "Contents of the second file."
+		)
+
+		let data = try Data(contentsOf: Bundle.module.url(forResource: "test-files/bsd-archive", withExtension: "a")!)
+
+		XCTAssertEqual(Data(writer.bytes), data)
+	}
+
 	func testArchiveReaderSubscripts() throws {
 		let bytes = Array<UInt8>(try Data(contentsOf: Bundle.module.url(forResource: "test-files/medium-archive", withExtension: "a")!))
 		let reader = try ArArchiveReader(archive: bytes)
@@ -121,5 +182,6 @@ final class ArArchiveKitTests: XCTestCase {
 		("Test Read Large Archive", testReadLargeArchive),
 		("Test Iterating Over Archive's Contents", testIterateArchiveContents),
 		("Test Archive Reader Subscripts", testArchiveReaderSubscripts),
+		("Test Read BSD Archive With Long Filenames", testReadBSDArchiveWithLongFilenames),
 	]
 }
