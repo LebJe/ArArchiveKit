@@ -160,7 +160,7 @@ let data = reader[header: header]
 
 ## Examples
 
--   `Exaples/Foundationless`: This example shows how to use ArArchiveKit to read an archive using only `Darwin.C`/`Glibc`/`ucrt`.
+-   `Exaples/Foundationless`: This example shows how to use ArArchiveKit to read an any archive using only `Darwin.C` (macOS), `Glibc` (Linux) or `ucrt` (Windows (not tested)).
 
 ## Other Platforms
 
