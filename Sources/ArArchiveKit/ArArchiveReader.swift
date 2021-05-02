@@ -26,7 +26,6 @@ public struct ArArchiveReader {
 	///
 	/// - Parameters:
 	///   - archive: The bytes of the archive you want to read.
-	///   - variant: The format of the archive you want to read.
 	/// - Throws: `ArArchiveError`.
 	public init(archive: [UInt8]) throws {
 		if archive.isEmpty {

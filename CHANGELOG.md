@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]()
 
+### Added
+
+-   Added three new options to Foundationless.
+-   Added support for changing the amount of characters/bytes printed, whether to print in binary of hexadecimal, and changing the line width in Foundationless.
+
 ### Fixed
 
 -   Fixed a bug that occurred when parsing a file in an archive that contained a `\n` after it's content.
