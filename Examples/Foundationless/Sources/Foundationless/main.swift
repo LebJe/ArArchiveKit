@@ -63,6 +63,13 @@ func parseHelpFlag(_ s: String) -> Bool {
 }
 
 let usage = """
+USAGE: \(CommandLine.arguments[0]) [--help, -h, -?] [-p] [-b] <file>
+
+Reads the archive at `file` prints information about each file in the archive.
+
+-h, --help, -?  Prints this message.
+-p  Print the contents of the files in the archive.
+-b  Print the binary representation of the files in the archive.
 USAGE: \(CommandLine.arguments[0]) [--help, -h, -?] [-p] [-b] [-w <value>] [-a <value>] <file>
 
 Reads the archive at `file` and prints information about each file in the archive.
