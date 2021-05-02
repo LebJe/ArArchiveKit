@@ -2,7 +2,7 @@
 //
 //  Licensed under the MIT License.
 //
-//  The full text license can be found in the file named LICENSE.
+//  The full text of the license can be found in the file named LICENSE.
 
 @testable import ArArchiveKit
 import Foundation
