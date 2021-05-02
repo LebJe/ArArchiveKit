@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Fixed a bug that occurred when parsing a file in an archive that contained a `\n` after it's content.
 
-## [0.1.0](https://github.com/LebJe/ArArchiveKit/releases/tag/0.1.0) - 2021-04-9
+## [0.1.0](https://github.com/LebJe/ArArchiveKit/releases/tag/0.1.0) - 2021-04-09
 
 ### Added
 
