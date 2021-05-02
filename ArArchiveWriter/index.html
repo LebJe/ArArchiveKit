@@ -37,7 +37,9 @@
     <code class="name">ArArchive​Writer</code>
 </h1>
 
-<html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">ArArchiveWriter</span></code></pre></body></html>
+<div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">ArArchiveWriter</span> </code></pre>
+</div>
 <div class="summary" role="doc-abstract">
     <p><code>ArArchiveWriter</code> creates <code>ar</code> files.</p>
 
@@ -50,7 +52,9 @@
     <h3>
         <code>init(variant:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">variant</span>: <a href="https://lebje.github.io/ArArchiveKit/Variant"><span class="type">Variant</span></a> = .<span class="variable">common</span>)</code></pre></body></html>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">variant</span>: <span class="type">Variant</span> = .<span class="variable">common</span>) </code></pre>
+</div>
 </div>
     </section>
     <section id="properties">
@@ -60,7 +64,9 @@
     <h3>
         <code>bytes</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">bytes</span>: [<span class="type">UInt8</span>] = []</code></pre></body></html>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">bytes</span>: [<span class="type">UInt8</span>] = []</code></pre>
+</div>
 <div class="summary" role="doc-abstract">
     <p>The raw bytes of the archive.</p>
 
@@ -70,7 +76,9 @@
     <h3>
         <code>variant</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">let</span> <span class="variable">variant</span>: <a href="https://lebje.github.io/ArArchiveKit/Variant"><span class="type">Variant</span></a></code></pre></body></html>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">let</span> <span class="variable">variant</span>: <span class="type">Variant</span></code></pre>
+</div>
 </div>
     </section>
     <section id="methods">
@@ -80,7 +88,9 @@
     <h3>
         <code>add​File(header:​contents:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="attribute">mutating</span> <span class="keyword">func</span> <span class="function">addFile</span>(<span class="variable">header</span>: <a href="https://lebje.github.io/ArArchiveKit/Header"><span class="type">Header</span></a>, <span class="variable">contents</span>: [<span class="type">UInt8</span>])</code></pre></body></html>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="attribute">mutating</span> <span class="keyword">func</span> <span class="function">addFile</span>(<span class="variable">header</span>: <span class="type">Header</span>, <span class="variable">contents</span>: [<span class="type">UInt8</span>]) </code></pre>
+</div>
 <div class="summary" role="doc-abstract">
     <p>Add a file to the archive.</p>
 
@@ -115,7 +125,9 @@
     <h3>
         <code>add​File(header:​contents:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="attribute">mutating</span> <span class="keyword">func</span> <span class="function">addFile</span>(<span class="variable">header</span>: <a href="https://lebje.github.io/ArArchiveKit/Header"><span class="type">Header</span></a>, <span class="variable">contents</span>: <span class="type">String</span>)</code></pre></body></html>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="attribute">mutating</span> <span class="keyword">func</span> <span class="function">addFile</span>(<span class="variable">header</span>: <span class="type">Header</span>, <span class="variable">contents</span>: <span class="type">String</span>) </code></pre>
+</div>
 <div class="summary" role="doc-abstract">
     <p>Wrapper function around <code>ArArchiveWriter.addFile(header:contents:)</code> which allows you to pass in a <code>String</code> instead of raw bytes..</p>
 
@@ -130,7 +142,7 @@
 
     <footer>
         <p>
-    Generated on <time datetime="2021-04-09T22:58:45+0000">April 9, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+    Generated on <time datetime="2021-05-02T18:48:40+0000">May 2, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.6</span>.
 </p>
     </footer>
 </body>
