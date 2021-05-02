@@ -2,7 +2,7 @@
 //
 //  Licensed under the MIT License.
 //
-//  The full text license can be found in the file named LICENSE.
+//  The full text of the license can be found in the file named LICENSE.
 
 /// `ArArchiveReader` reads `ar` files.
 public struct ArArchiveReader {
@@ -48,12 +48,15 @@ public struct ArArchiveReader {
 		while index < (self.data.count - 1), (index + (headerSize - 1)) < self.data.count - 1 {
 			var h = try self.parseHeader(bytes: Array(self.data[index...(index + headerSize - 1)]))
 
-			index += headerSize + 1
-			h.contentLocation = (index - 1) + (h.nameSize != nil ? h.nameSize! : 0)
+			h.contentLocation = (index + headerSize) + (h.nameSize != nil ? h.nameSize! : 0)
+
+			// Jump past the header.
+			index += headerSize
 
 			h.name = h.nameSize != nil ? String(Array(self.data[h.contentLocation - h.nameSize!..<h.contentLocation])) : h.name
 
-			index += h.size + (h.nameSize != nil ? h.nameSize! : 0)
+			// Jump past the content of the file.
+			index += (h.size % 2 != 0 ? h.size + 1 : h.size) + (h.nameSize != nil ? h.nameSize! : 0)
 
 			self.headers.append(h)
 		}

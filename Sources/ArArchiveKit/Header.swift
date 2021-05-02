@@ -2,7 +2,7 @@
 //
 //  Licensed under the MIT License.
 //
-//  The full text license can be found in the file named LICENSE.
+//  The full text of the license can be found in the file named LICENSE.
 
 /// The `ar` header.
 ///
@@ -33,6 +33,8 @@ public struct Header: Equatable {
 
 	internal var contentLocation: Int = 0
 	internal var nameSize: Int?
+	internal var startingLocation: Int?
+	internal var endingLocation: Int?
 
 	public init(
 		name: String,

@@ -2,7 +2,7 @@
 //
 //  Licensed under the MIT License.
 //
-//  The full text license can be found in the file named LICENSE.
+//  The full text of the license can be found in the file named LICENSE.
 
 #if os(macOS)
 	import Darwin.C
@@ -28,7 +28,7 @@ func parseHelpFlag(_ s: String) -> Bool {
 let usage = """
 USAGE: \(CommandLine.arguments[0]) [--help, -h, -?] [-p] [-b] <file>
 
-Reads the archive at `file` prints information about each file in the archive. Note that `-b` must come AFTER `-p`.
+Reads the archive at `file` prints information about each file in the archive.
 
 -h, --help, -?  Prints this message.
 -p  Print the contents of the files in the archive.
@@ -44,11 +44,11 @@ func parseArgs() {
 		exit(1)
 	}
 
-	if CommandLine.arguments.count >= 3, CommandLine.arguments[2] == "-p" {
+	if CommandLine.arguments.firstIndex(of: "-p") != nil {
 		shouldPrintFile = true
 	}
 
-	if CommandLine.arguments.count >= 4, CommandLine.arguments[3] == "-b" {
+	if CommandLine.arguments.firstIndex(of: "-b") != nil {
 		printInBinary = true
 	}
 }
@@ -81,9 +81,9 @@ for (header, file) in reader {
 	print("File Size: " + String(header.size))
 	print("File Modification Time: " + String(header.modificationTime))
 
-	print("Contents:\n")
-
 	if shouldPrintFile {
+		print("Contents:\n")
+
 		if printInBinary {
 			file.forEach({ print($0) })
 		} else {
