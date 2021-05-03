@@ -87,6 +87,7 @@ let header = Header(
 Once you have your `Header`, you can write it, along with the contents of your file, to the archive:
 
 ```swift
+// Without Foundation
 var contents = [
 	UInt8(ascii: "H"),
 	UInt8(ascii: "e"),
@@ -95,26 +96,26 @@ var contents = [
 	UInt8(ascii: "o"),
 ]
 
-// Or
+// With Foundation
 
 let myData: Data = "Hello".data(using .utf8)!
 
 contents = Array<UInt8>(myData)
 
-archive.addFile(header: header, contents: contents)
+writer.addFile(header: header, contents: contents)
 ```
 
 If you have a text file, use the overloaded version of `addFile`:
 
 ```swift
-archive.addFile(header: header, contents: "Hello")
+writer.addFile(header: header, contents: "Hello")
 ```
 
 Once you have added your files, you can get the archive like this:
 
 ```swift
 // The binary representation (Array<UInt8>) of the archive.
-let bytes = archive.bytes
+let bytes = writer.bytes
 // You convert it to data like this:
 let data = Data(bytes)
 
