@@ -49,7 +49,7 @@ Support for the GNU variant may come soon.
 Add this to the `dependencies` array in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/LebJe/ArArchiveKit.git", from: "0.0.2")
+.package(url: "https://github.com/LebJe/ArArchiveKit.git", from: "0.2.1")
 ```
 
 . Also add this to the `targets` array in the aforementioned file:
