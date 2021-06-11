@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2](https://github.com/LebJe/ArArchiveKit/releases/tag/0.2.2) - 2021-06-11
+
+### Fixed
+
+-   Replaced the compiler-generated `CodingKey` with a hand-written one so `contentLocation` isn't encoded or decoded.
+
 ## [0.2.1](https://github.com/LebJe/ArArchiveKit/releases/tag/0.2.1) - 2021-06-11
 
 ### Added

@@ -49,4 +49,8 @@ public struct Header: Equatable, Codable {
 		self.mode = mode
 		self.modificationTime = modificationTime
 	}
+
+	enum CodingKeys: String, CodingKey {
+		case name, userID, groupID, mode, modificationTime, size
+	}
 }
