@@ -146,16 +146,25 @@ public struct ArArchiveReader {
 	}
 }
 
-extension ArArchiveReader: IteratorProtocol, Sequence {
+extension ArArchiveReader: Sequence {
+	public func makeIterator() -> ArArchiveReaderIterator {
+		ArArchiveReaderIterator(archive: self)
+	}
+}
+
+public struct ArArchiveReaderIterator: IteratorProtocol {
 	public typealias Element = (Header, [UInt8])
 
-	public mutating func next() -> Element? {
-		if self.currentIndex > self.headers.count - 1 {
+	let archive: ArArchiveReader
+	var currentIndex = 0
+
+	public mutating func next() -> (Header, [UInt8])? {
+		if self.currentIndex > self.archive.headers.count - 1 {
 			return nil
 		}
 
-		let bytes = self[currentIndex]
-		let h = self.headers[self.currentIndex]
+		let bytes = self.archive[self.currentIndex]
+		let h = self.archive.headers[self.currentIndex]
 		self.currentIndex += 1
 
 		return (h, bytes)
