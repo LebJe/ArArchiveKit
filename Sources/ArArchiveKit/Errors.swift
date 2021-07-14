@@ -4,9 +4,13 @@
 //
 //  The full text of the license can be found in the file named LICENSE.
 
+/// Errors that occur while reading or writing an `ar` archive.
 public enum ArArchiveError: Error {
 	/// The archive was empty.
 	case emptyArchive
+
+	/// There were no entries in the archive.
+	case noEntries
 
 	/// The archive was invalid. It may not contain a global header,
 	/// the file headers may be ill formatted, or something else my be wrong.

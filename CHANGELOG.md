@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0](https://github.com/LebJe/ArArchiveKit/releases/tag/0.3.0) - 2021-07-14
+
+### Added
+
+-   Added support for the [GNU `ar` format](<https://en.wikipedia.org/wiki/Ar_(Unix)#System_V_(or_GNU)_variant>).
+-   Added a `variant` field to `ArArchiveReader`. This field contains the `Variant ` of the archive that was parsed.
+-   Add a `noEntries` case to `ArArchiveError`.
+
+### Changed
+
+-   `ArArchiveWriter` now requires users to call `finalize` to access the bytes of the archive.
+
+### Fixed
+
+-   Correctly parse archive headers whose `mode` field is 0.
+
+### Removed
+
+-   `ArArchiveWriter.bytes`.
+
 ## [0.2.3](https://github.com/LebJe/ArArchiveKit/releases/tag/0.2.3) - 2021-06-22
 
 ### Added

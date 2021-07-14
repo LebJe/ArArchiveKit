@@ -166,6 +166,8 @@ func main() throws {
 
 	let reader = try ArArchiveReader(archive: bytes)
 
+	print("Archive Variant: " + reader.variant.rawValue)
+
 	for (header, file) in reader {
 		print("---------------------------")
 

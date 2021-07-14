@@ -28,7 +28,7 @@
         -   [Windows](#windows)
     -   [Contributing](#contributing)
 
-<!-- Added by: lebje, at: Fri Apr  9 18:48:17 EDT 2021 -->
+<!-- Added by: lebje, at: Wed Jul 14 12:30:02 EDT 2021 -->
 
 <!--te-->
 
@@ -38,9 +38,9 @@ Documentation is available [here](https://lebje.github.io/ArArchiveKit).
 
 ## `ar` Variations
 
-ArArchiveKit supports the BSD variation of `ar` as described in [FreeBSD manpages](https://www.freebsd.org/cgi/man.cgi?query=ar&sektion=5).
+ArArchiveKit supports the BSD and GNU variations of `ar` as described in [FreeBSD manpages](https://www.freebsd.org/cgi/man.cgi?query=ar&sektion=5).
 
-Support for the GNU variant may come soon.
+Suport for symbol tables may come soon
 
 ## Installation
 
@@ -114,8 +114,9 @@ writer.addFile(header: header, contents: "Hello")
 Once you have added your files, you can get the archive like this:
 
 ```swift
-// The binary representation (Array<UInt8>) of the archive.
-let bytes = writer.bytes
+// Call finalize to get the binary representation (Array<UInt8>) of the archive.
+let bytes = writer.finalize()
+
 // You convert it to data like this:
 let data = Data(bytes)
 
