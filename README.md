@@ -49,7 +49,7 @@ Support for symbol tables may come soon
 Add this to the `dependencies` array in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/LebJe/ArArchiveKit.git", from: "0.2.1")
+.package(url: "https://github.com/LebJe/ArArchiveKit.git", from: "0.3.0")
 ```
 
 Also add this to the `targets` array in the aforementioned file:
