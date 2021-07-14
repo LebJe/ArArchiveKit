@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 -   Added support for the [GNU `ar` format](<https://en.wikipedia.org/wiki/Ar_(Unix)#System_V_(or_GNU)_variant>).
--   Added a `variant` field to `ArArchiveReader`. This field contains the `Variant ` of the archive that was parsed.
+-   Added a `variant` field to `ArArchiveReader`. This field contains the `Variant` of the archive that was parsed.
 -   Add a `noEntries` case to `ArArchiveError`.
 
 ### Changed
