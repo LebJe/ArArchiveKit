@@ -40,7 +40,7 @@ Documentation is available [here](https://lebje.github.io/ArArchiveKit).
 
 ArArchiveKit supports the BSD and GNU variations of `ar` as described in [FreeBSD manpages](https://www.freebsd.org/cgi/man.cgi?query=ar&sektion=5).
 
-Suport for symbol tables may come soon
+Support for symbol tables may come soon
 
 ## Installation
 
@@ -52,7 +52,7 @@ Add this to the `dependencies` array in `Package.swift`:
 .package(url: "https://github.com/LebJe/ArArchiveKit.git", from: "0.2.1")
 ```
 
-. Also add this to the `targets` array in the aforementioned file:
+Also add this to the `targets` array in the aforementioned file:
 
 ```swift
 .product(name: "ArArchiveKit", package: "ArArchiveKit")
