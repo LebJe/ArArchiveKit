@@ -5,13 +5,14 @@
 //  The full text of the license can be found in the file named LICENSE.
 
 /// The different formats of the `ar` archive.
-public enum Variant {
+public enum Variant: String {
 	/// The "common" format. This format is used by Debian `deb` packages.
-	case common
+	case common = "Common"
 
 	/// Used by the BSD and MacOS implementation of the `ar` command. This format is backwards-compatible with the "common" format.
-	case bsd
+	case bsd = "BSD"
 
-	// TODO: Add documentation.
-	// case gnu
+	/// The System V (or GNU) variant. Used by the GNU implementation of the `ar` command, and on Windows.
+	/// This format is **not** backwards-compatible with the "common" format.
+	case gnu = "GNU"
 }

@@ -4,5 +4,9 @@
 //
 //  The full text of the license can be found in the file named LICENSE.
 
-let globalHeader = "!<arch>\n"
-let headerSize = 60
+enum Constants {
+	/// The file signature placed atop an `ar` archive.
+	static let globalHeader = "!<arch>\n"
+
+	static let headerSize = 60
+}

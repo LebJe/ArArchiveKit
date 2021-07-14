@@ -24,7 +24,7 @@ final class ArArchiveKitTests: XCTestCase {
 			contents: "Hello, World!"
 		)
 
-		XCTAssertEqual(Data(writer.bytes), data)
+		XCTAssertEqual(writer.finalize(), Array(data))
 	}
 
 	func testWriteLargeMultiArchive() throws {
@@ -56,7 +56,7 @@ final class ArArchiveKitTests: XCTestCase {
 
 		let data = try Data(contentsOf: Bundle.module.url(forResource: "test-files/multi-archive", withExtension: "a")!)
 
-		XCTAssertEqual(Data(writer.bytes), data)
+		XCTAssertEqual(Data(writer.finalize()), data)
 	}
 
 	func testReadLargeArchive() throws {
@@ -153,7 +153,58 @@ final class ArArchiveKitTests: XCTestCase {
 
 		let data = try Data(contentsOf: Bundle.module.url(forResource: "test-files/bsd-archive", withExtension: "a")!)
 
-		XCTAssertEqual(Data(writer.bytes), data)
+		XCTAssertEqual(Data(writer.finalize()), data)
+	}
+
+	func testWriteGNUArchive() throws {
+		var writer = ArArchiveWriter(variant: .gnu)
+
+		writer.addFile(
+			header: Header(name: "Very Long Filename With Spaces.txt", modificationTime: 1626214982),
+			contents: "Hello, World!"
+		)
+
+		writer.addFile(
+			header: Header(name: "Very Long Filename With Spaces 2.txt", modificationTime: 1626214982),
+			contents: "Hello, Again!"
+		)
+
+		writer.addFile(
+			header: Header(name: "ShortName.txt", modificationTime: 1626214982),
+			contents: "Hello!"
+		)
+
+		let data = try Data(contentsOf: Bundle.module.url(forResource: "test-files/gnu-archive", withExtension: "a")!)
+
+		XCTAssertEqual(Data(writer.finalize()), data)
+	}
+
+	func testReadGNUArchive() throws {
+		let data = try Array(Data(contentsOf: Bundle.module.url(forResource: "test-files/gnu-archive", withExtension: "a")!))
+		let reader = try ArArchiveReader(archive: data)
+		let expectedHeaders = [
+			Header(name: "Very Long Filename With Spaces.txt", userID: 0, groupID: 0, mode: 420, modificationTime: 1626214982),
+			Header(name: "Very Long Filename With Spaces 2.txt", userID: 0, groupID: 0, mode: 420, modificationTime: 1626214982),
+			Header(name: "ShortName.txt", userID: 0, groupID: 0, mode: 420, modificationTime: 1626214982),
+		]
+
+		XCTAssertEqual(reader.headers[0].name, expectedHeaders[0].name)
+		XCTAssertEqual(reader.headers[0].userID, expectedHeaders[0].userID)
+		XCTAssertEqual(reader.headers[0].groupID, expectedHeaders[0].groupID)
+		XCTAssertEqual(reader.headers[0].mode, expectedHeaders[0].mode)
+		XCTAssertEqual(reader.headers[0].modificationTime, expectedHeaders[0].modificationTime)
+
+		XCTAssertEqual(reader.headers[1].name, expectedHeaders[1].name)
+		XCTAssertEqual(reader.headers[1].userID, expectedHeaders[1].userID)
+		XCTAssertEqual(reader.headers[1].groupID, expectedHeaders[1].groupID)
+		XCTAssertEqual(reader.headers[1].mode, expectedHeaders[1].mode)
+		XCTAssertEqual(reader.headers[1].modificationTime, expectedHeaders[1].modificationTime)
+
+		XCTAssertEqual(reader.headers[2].name, expectedHeaders[2].name)
+		XCTAssertEqual(reader.headers[2].userID, expectedHeaders[2].userID)
+		XCTAssertEqual(reader.headers[2].groupID, expectedHeaders[2].groupID)
+		XCTAssertEqual(reader.headers[2].mode, expectedHeaders[2].mode)
+		XCTAssertEqual(reader.headers[2].modificationTime, expectedHeaders[2].modificationTime)
 	}
 
 	func testArchiveReaderSubscripts() throws {
@@ -183,5 +234,7 @@ final class ArArchiveKitTests: XCTestCase {
 		("Test Iterating Over Archive's Contents", testIterateArchiveContents),
 		("Test Archive Reader Subscripts", testArchiveReaderSubscripts),
 		("Test Read BSD Archive With Long Filenames", testReadBSDArchiveWithLongFilenames),
+		("Test Writing GNU Archive", testWriteGNUArchive),
+		("Test Reading GNU Archive", testReadGNUArchive),
 	]
 }
