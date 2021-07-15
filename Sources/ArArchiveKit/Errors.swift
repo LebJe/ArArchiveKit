@@ -13,13 +13,13 @@ public enum ArArchiveError: Error {
 	case noEntries
 
 	/// The archive was invalid. It may not contain a global header,
-	/// the file headers may be ill formatted, or something else my be wrong.
+	/// the file headers may be ill formatted, or something else may be wrong.
 	case invalidArchive
 
-	/// The archive did not contain the correct sequence of bytes that identifies it as a `ar` archive.
+	/// The archive did not contain the correct sequence of bytes that identifies it as an `ar` archive.
 	case invalidMagicBytes
 
-	/// The archive did not contain the sequence of bytes that identifies it as a `ar` archive.
+	/// The archive did not contain the sequence of bytes that identifies it as an `ar` archive.
 	case missingMagicBytes
 
 	/// The header may contain invalid characters and/or bytes, or may be missing certain fields.

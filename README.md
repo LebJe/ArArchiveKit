@@ -40,7 +40,7 @@ Documentation is available [here](https://lebje.github.io/ArArchiveKit).
 
 ArArchiveKit supports the BSD and GNU variations of `ar` as described in [FreeBSD manpages](https://www.freebsd.org/cgi/man.cgi?query=ar&sektion=5).
 
-Support for symbol tables may come soon
+Support for symbol tables may come soon.
 
 ## Installation
 
@@ -171,7 +171,7 @@ let data = reader[header: header]
 
 ## Examples
 
--   `Exaples/Foundationless`: This example shows how to use ArArchiveKit to read an any archive using only `Darwin.C` (macOS), `Glibc` (Linux) or `ucrt` (Windows (not tested)).
+-   `Exaples/ReaderAndWriter`: This example shows how to use ArArchiveKit to read or extract entries from any archive using only `Darwin.C` (macOS), `Glibc` (Linux) or `ucrt` (Windows (not tested)).
 
 ## Other Platforms
 

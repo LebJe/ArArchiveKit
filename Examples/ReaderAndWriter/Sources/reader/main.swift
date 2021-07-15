@@ -16,8 +16,8 @@ import ArArchiveKit
 
 // MARK: - Extensions
 
-// From: https://www.hackingwithswift.com/example-code/language/how-to-split-an-array-into-chunks
 extension Array {
+	/// From: [hackingwithswift.com](https://www.hackingwithswift.com/example-code/language/how-to-split-an-array-into-chunks).
 	func chunked(into size: Int) -> [[Element]] {
 		stride(from: 0, to: self.count, by: size).map {
 			Array(self[$0..<Swift.min($0 + size, self.count)])
@@ -65,7 +65,7 @@ func parseHelpFlag(_ s: String) -> Bool {
 let usage = """
 USAGE: \(CommandLine.arguments[0]) [--help, -h, -?] [-p] [-b] <file>
 
-Reads the archive at `file` prints information about each file in the archive.
+Reads the archive at `file` and prints information about each entry in the archive.
 
 -h, --help, -?  Prints this message.
 -p  Print the contents of the files in the archive.
