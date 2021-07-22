@@ -6,5 +6,8 @@ xcuserdata/
 /.swiftpm
 Package.resolved
 Brewfile.lock.json
-Examples/ReaderAndWriter/.swiftpm
-Examples/ReaderAndWriter/.build
+Examples/CreateReadWrite/.swiftpm
+Examples/CreateReadWrite/.build
+Examples/CreateReadWrite/.vscode
+.vscode/
+Examples/CreateReadWrite/output.a

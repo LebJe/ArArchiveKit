@@ -53,19 +53,21 @@ if CommandLine.arguments.count < 2 || parseHelpFlag(CommandLine.arguments[1]) {
 }
 
 func main() throws {
-	let fd = open(CommandLine.arguments[1], O_RDONLY)
+	guard let fp = fopen(CommandLine.arguments[1], "rb") else {
+		print("Unable to open \(CommandLine.arguments[1])")
+		exit(2)
+	}
 
-	let size = Int(lseek(fd, 0, SEEK_END))
+	let fpNumber = fileno(fp)
+	let size = Int(lseek(fpNumber, 0, SEEK_END))
 
-	lseek(fd, 0, SEEK_SET)
+	lseek(fpNumber, 0, SEEK_SET)
 
 	let buf = UnsafeMutableRawBufferPointer.allocate(byteCount: size, alignment: MemoryLayout<UInt8>.alignment)
 
-	read(fd, buf.baseAddress, buf.count)
+	read(fpNumber, buf.baseAddress, buf.count)
 
-	let bufferPointer = buf.bindMemory(to: UInt8.self)
-
-	let bytes = Array(bufferPointer)
+	let bytes = Array(buf.bindMemory(to: UInt8.self))
 
 	let reader = try ArArchiveReader(archive: bytes)
 
@@ -79,7 +81,7 @@ func main() throws {
 		let fp = fopen(path, "wb")
 
 		if fp == nil {
-			print("Failed to open \(path)")
+			print("Failed to open \(path).")
 			continue
 		}
 		_ = file.withUnsafeBytes({ buff in

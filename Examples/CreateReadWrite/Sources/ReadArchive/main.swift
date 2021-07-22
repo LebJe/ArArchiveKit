@@ -150,19 +150,21 @@ func printContents(from bytes: [UInt8]) {
 }
 
 func main() throws {
-	let fd = open(CommandLine.arguments[1], O_RDONLY)
+	guard let fp = fopen(CommandLine.arguments[1], "rb") else {
+		print("Unable to open \(CommandLine.arguments[1]).")
+		exit(2)
+	}
 
-	let size = Int(lseek(fd, 0, SEEK_END))
+	let fpNumber = fileno(fp)
+	let size = Int(lseek(fpNumber, 0, SEEK_END))
 
-	lseek(fd, 0, SEEK_SET)
+	lseek(fpNumber, 0, SEEK_SET)
 
 	let buf = UnsafeMutableRawBufferPointer.allocate(byteCount: size, alignment: MemoryLayout<UInt8>.alignment)
 
-	read(fd, buf.baseAddress, buf.count)
+	read(fpNumber, buf.baseAddress, buf.count)
 
-	let bufferPointer = buf.bindMemory(to: UInt8.self)
-
-	let bytes = Array(bufferPointer)
+	let bytes = Array(buf.bindMemory(to: UInt8.self))
 
 	let reader = try ArArchiveReader(archive: bytes)
 
@@ -174,7 +176,7 @@ func main() throws {
 		print("Name: " + header.name)
 		print("User ID: " + String(header.userID))
 		print("Group ID: " + String(header.groupID))
-		print("Mode (In Octal): " + String(header.mode, radix: 8))
+		print("File Mode (In Octal): " + String(header.mode, radix: 8))
 		print("File Size: " + String(header.size))
 		print("File Modification Time: " + String(header.modificationTime))
 
