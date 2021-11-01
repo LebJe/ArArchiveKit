@@ -38,7 +38,7 @@ Documentation is available [here](https://lebje.github.io/ArArchiveKit).
 
 ## `ar` Variations
 
-ArArchiveKit supports the BSD and GNU variations of `ar` as described in [FreeBSD manpages](https://www.freebsd.org/cgi/man.cgi?query=ar&sektion=5).
+ArArchiveKit supports the "Common", BSD, and SVR4/GNU variations of `ar` as described in [FreeBSD manpages](https://www.freebsd.org/cgi/man.cgi?query=ar&sektion=5).
 
 Support for symbol tables may come soon.
 
